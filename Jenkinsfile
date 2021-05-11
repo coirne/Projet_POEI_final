@@ -38,7 +38,7 @@ pipeline {
                 sh '''
                     rm -f /var/jenkins_home/workspace/*.tar.gz
                     tar -czf archive_version$BUILD_NUMBER.tar.gz /var/jenkins_home/workspace/Projet_POEI_final/
-                    curl -v -u admin:corine --upload-file /var/jenkins_home/workspace/archive_version$BUILD_NUMBER.tar.gz  http://172.27.208.1:8081/repository/projet_final/
+                    curl -v -u admin:corine --upload-file /var/jenkins_home/workspace/archive_version$BUILD_NUMBER.tar.gz  http://172.27.208.1:8081/repository/Projet_POEI_final/
                 '''
           }
 
