@@ -1,0 +1,34 @@
+version: '3.5'
+
+services:
+
+  jenkins:
+    container_name: jenkins
+    image: jenkinsci/blueocean
+    volumes:
+      - ./jenkins-data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./jenkins-data/.m2:/var/jenkins_home/.m2/repository
+    ports:
+      - "8080:8080"
+    links:
+      - sonarqube
+
+  sonarqube:
+    container_name: sonarqube
+    image: sonarqube
+    volumes:
+      - ./sonarqube/conf:/opt/sonarqube/conf
+      - ./sonarqube/data:/opt/sonarqube/data
+      - ./sonarqube/extensions:/opt/sonarqube/extensions
+    ports:
+      - "9000:9000"
+
+  nexus:
+    container_name: nexus
+    image: sonatype/nexus3
+    volumes:
+      - ./nexus-data:/nexus-data sonatype/nexus3
+    ports:
+      - "8081:8081"
+
