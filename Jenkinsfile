@@ -11,8 +11,9 @@ pipeline {
         steps {
                 sh '''
                     pip3 install -r requirements.txt
-                    cd tests
+                    cd /var/jenkins_home/workspace/Projet_POEI_final/tests
                     pytest
+                    cd /var/jenkins_home/workspace/Projet_POEI_final
                 '''
           }
         }
@@ -36,9 +37,11 @@ pipeline {
         stage('Store Artefact : nexus'){        
         steps {
                 sh '''
+                    cd /var/jenkins_home/workspace
                     rm -f /var/jenkins_home/workspace/*.tar.gz
-                    tar -czf archive_version$BUILD_NUMBER.tar.gz /var/jenkins_home/workspace/Projet_POEI_final/
+                    tar -czf archive_version$BUILD_NUMBER.tar.gz /var/jenkins_home/workspace/Projet_POEI_final
                     curl -v -u admin:corine --upload-file /var/jenkins_home/workspace/archive_version$BUILD_NUMBER.tar.gz  http://172.27.208.1:8081/repository/Projet_POEI_final/
+                    cd /var/jenkins_home/workspace/Projet_POEI_final
                 '''
           }
 
