@@ -41,7 +41,7 @@ Scénario de test:
  - Introduire des erreurs dans le code → artefact non généré 
 
 
-![Lien diagramme](images/diagrams.png)
+![Lien diagramme](images/architecture2.png)
 
 
 # Setup
